@@ -1,4 +1,4 @@
-# Steps (Local running Terraform):
+# Steps (Run Terraform locally):
 * git clone https://github.com/CyanZero/a_es_test.git
 * cd terraform
 * Config ~/.aws/credential
@@ -15,22 +15,15 @@
 ```terraform plan -var-file=terraform.tfvars```
 ```terraform apply -var-file=terraform.tfvars```
 
-# Steps
+# Steps for Ansible
 
-* git
-* cd ansible
-* vi ~/.ssh/test.pem and add in the `cat private_key.pem`
-* eval "$(ssh-agent -s)"
-* ssh-add ~/.ssh/test.pem
-* chmod 0400 ~/.ssh/test.pem
 * export ANSIBLE_HOST_KEY_CHECKING=False
 * export AWS_ACCESS_KEY_ID='YOUR_AWS_API_KEY'
 * export AWS_SECRET_ACCESS_KEY='YOUR_AWS_API_SECRET_KEY'
 * change ./dev_aws/inventory/ec2.ini:
-	* Update aws_key and aws_id accordingly
-	* vpc_destination_variable = private_ip_address (For actual setup in ansible server)
+	* vpc_destination_variable = ip_address
 
-## Running Ansible locally):
+## Running Ansible locally:
 This is used to setup ansible running ENV remotely
 * git clone https://github.com/CyanZero/a_es_test.git
 * cd ansible
@@ -40,12 +33,19 @@ This is used to setup ansible running ENV remotely
 ```ansible-playbook -i dev_aws/ playbooks/ansible_conf.yml --diff```
 
 ## Running Ansible remotely
+* chmod 0400 ~/.ssh/private.pem
+* eval "$(ssh-agent -s)"
+* ssh-add ~/.ssh/private.pem
+* ssh -A -i ~/.ssh/private.pem ubuntu@public_ip_of_bastion
 * git clone https://github.com/CyanZero/a_es_test.git
 * cd ansible
 * Run commend to test setting:
 ```./dev_aws/inventory/ec2.py --list```
 * Run setup:
-```ansible-playbook -i dev_aws/ playbooks/server_conf.yml --diff```
+```ansible-playbook -i dev_aws/ playbooks/server_conf.yml --diff ```
 
 * Verify ElasticSearch server:
+* Access to port 9200
+* Access without authentication
+* Access with authentication to port 80
 ```curl -u calvin ${ip_of_web_server}```

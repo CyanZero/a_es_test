@@ -1,9 +1,8 @@
 
-Assumption is a pre-setup instance with Python 3 and Ansible installed server, and the server could a pre-defined ami, reason being:
+Notes:
 1. All the setup done in the same VPC
-2. No need to transfer private key elsewhere
-3. The usage of ElasticSearch is for REST API
-4. The server running ElasticSearch is type t2.small due to minimum RAM requirement(2GB)
+2. The usage of ElasticSearch is for REST API
+3. The server running ElasticSearch is type t2.small due to minimum RAM requirement(2GB)
 
 
 1. What did you choose to automate the provisioning and bootstrapping of the instance? Why?
@@ -17,6 +16,7 @@ Assumption is a pre-setup instance with Python 3 and Ansible installed server, a
 - Automated server configurations via Ansible:
     - Common setup, e.g. log agent
     - Java
+    - Nginx proxy
     - ElasticSearch
 
 2. How did you choose to secure ElasticSearch? Why?
@@ -34,11 +34,19 @@ Assumption is a pre-setup instance with Python 3 and Ansible installed server, a
 
 4. Could you extend your solution to launch a secure cluster of ElasticSearch nodes? What
 would need to change to support this use case?
-- I need to take sometime and research but I know it's possible to create ElasticSearch clusters
+- Need to install ElasticSearch in cluster mode, including master, data, ingest nodes and etc.
 
 5. Could you extend your solution to replace a running ElasticSearch instance with little or no
 downtime? How?
+- Yes, by enabling cluster mode, keep multiple running instances for failover
+
 6. Was it a priority to make your code well structured, extensible, and reusable?
+- Secure the servers and applications, so I prepared a network architecure before I started.
+  For example:
+  1. No clear key/credentails transfer out of cloud.
+  2. All the key servers are put in
+  3. Private subnet, use a bastion host to access private servers.
+  4. Secure ElasticSearch from non-authenticated access, and etc.
 - Use a structured Terraform pre-configurations, which use all module-based setup, so that all the
  modules are separated, e.g. network, compute resources and etc.
  All the major variables are extracted into terraform.tfvars and running in a different component(main.tf),
@@ -52,3 +60,4 @@ downtime? How?
 - There is no Load Balancer configured
 - ElasticSearch cluster was not ready
 - SSL setup is not done for Nginx proxy
+- SSH key automation
