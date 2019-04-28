@@ -1,0 +1,22 @@
+- hosts: tag_Name_web_server
+  gather_facts: true
+  vars:
+    action_name: conf
+    site_conf: elasticsearch.conf
+    ansible_python_interpreter: /usr/bin/python3
+    htpasswd_credentials:
+      - path: /etc/nginx/passwdfile
+        name: calvin
+        password: 'supersecure'
+        owner: root
+        group: www-data
+        mode: 'u+rw,g+r'
+    # nginx_remove_default_vhost: True
+  become: true
+  user: ubuntu
+  roles:
+    - common
+    - java
+    - nginx
+    - elasticsearch
+

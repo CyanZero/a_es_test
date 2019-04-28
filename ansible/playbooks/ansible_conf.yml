@@ -1,0 +1,11 @@
+- hosts: tag_Name_bastion_server
+  gather_facts: true
+  vars:
+    action_name: conf
+    ansible_python_interpreter: /usr/bin/python3
+  become: true
+  user: ubuntu
+  roles:
+    - common
+    - ansible
+

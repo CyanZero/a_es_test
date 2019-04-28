@@ -1,0 +1,8 @@
+ansible_python_interpreter: "/usr/local/bin/python3"
+
+# Nginx
+nginx_path: /etc/nginx
+nginx_conf: nginx.conf
+
+# ElasticSearch
+elasticsearch: elasticsearch.yml
