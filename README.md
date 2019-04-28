@@ -9,7 +9,7 @@
 ```assuming generated: private_key.pem and public_key.pub```
 * Configure terraform.tfvars:
     * credential: To indicate the location of ~/.aws/credential
-    * public_key: `cat public_key.pub`
+    * public_key: `cat public_key.pub` (This turns out a bug and need to update aws_network/nat.tf)
 * Run command to setup infra:
 ```terraform init```
 ```terraform plan -var-file=terraform.tfvars```
