@@ -18,7 +18,7 @@ resource "aws_instance" "web_server" {
   instance_type               = "${var.web_server_machine_type}"
   availability_zone           = "${var.zone}"
   key_name                    = "${var.key_name}"
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
   tags {
     Name = "${var.web_server_name}"
