@@ -37,4 +37,9 @@ module web {
   web_server_size         = "${var.web_server_size}"
   web_server_machine_type = "${var.web_server_machine_type}"
   web_server_count        = "${var.web_server_count}"
+
+  slave_server_name         = "${var.slave_server_name}"
+  slave_server_size         = "${var.slave_server_size}"
+  slave_server_machine_type = "${var.slave_server_machine_type}"
+  slave_server_count        = "${var.slave_server_count}"
 }

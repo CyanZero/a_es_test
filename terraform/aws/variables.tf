@@ -148,3 +148,23 @@ variable "web_server_size" {
   default     = 0
   description = "Indicate the boot disk size"
 }
+
+variable "slave_server_count" {
+  default     = 0
+  description = "Indicate how many instances to be created for this app"
+}
+
+variable "slave_server_name" {
+  default     = ""
+  description = "Indicate the app name"
+}
+
+variable "slave_server_machine_type" {
+  default     = ""
+  description = "Indicate the server CPU and RAM"
+}
+
+variable "slave_server_size" {
+  default     = 0
+  description = "Indicate the boot disk size"
+}

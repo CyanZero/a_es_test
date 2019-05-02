@@ -58,7 +58,7 @@ target_group_port = 9200
 // servers
 bastion_image = "ami-0dad20bd1b9c8c004"
 
-bastion_count = 1
+bastion_count = 0
 
 bastion_name = "bastion-server"
 
@@ -73,3 +73,11 @@ web_server_name = "web-server"
 web_server_machine_type = "t2.small"
 
 web_server_size = 10
+
+slave_server_count = 1
+
+slave_server_name = "slave-server"
+
+slave_server_machine_type = "t2.small"
+
+slave_server_size = 10
